@@ -25,6 +25,7 @@ import java.io.*;
 import java.util.*;
 
 public class ExceptionHandling {
+    // main functions
     public static void withoutTryCatch(){
         int[] numbers = {1, 2, 3};
         System.out.println("Accessing the index:2, " + numbers[2]);
@@ -32,6 +33,8 @@ public class ExceptionHandling {
         System.out.println("Accessing the index:3, " + numbers[3]);
         System.out.println("Accessing the index:1, " + numbers[1]);
     }
+
+
     public static void basicTryCatch(){
         try{
             int[] numbers = {1, 2, 3};
@@ -47,6 +50,8 @@ public class ExceptionHandling {
 
         System.out.println("Program continues after exception handling");
     }
+
+
     public static void multipleCatchBlocks(){
         String[] data = {"10", "abc", "40", "sharad"};
 
@@ -88,6 +93,8 @@ public class ExceptionHandling {
             }
         }
     }
+
+
     public static void finalCatchBlock(){
         FileWriter writer = null;
 
@@ -117,6 +124,8 @@ public class ExceptionHandling {
         }
         System.out.println("Method completed");
     }
+
+
     public static void tryWithResource(){
         // FileWriter
         // - Direct writer for writing character data to a file.
@@ -142,6 +151,8 @@ public class ExceptionHandling {
             System.out.println(e.getMessage());
         }
     }
+
+
     public static void throwingException(){
         try{
             validateAge(15);
@@ -151,6 +162,8 @@ public class ExceptionHandling {
             System.out.println("Validation error: " + e.getMessage());
         }
     }
+
+
     public static void throwsException(){
         // by-default it goes with the double
         // so making it with float....
@@ -162,6 +175,8 @@ public class ExceptionHandling {
             System.out.println("Banking error: " + e.getMessage());
         }
     }
+
+
     public static void customException(){
         try{
             BankAccount account = new BankAccount(1000);
