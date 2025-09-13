@@ -1,0 +1,2 @@
+try-with-resources example
+Resources are auto-closed
