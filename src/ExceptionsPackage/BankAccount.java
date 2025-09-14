@@ -38,3 +38,31 @@ public class BankAccount {
         }
     }
 }
+
+/*
+ * Key Points:
+ * 1. Checked exceptions must be caught or declared with throws
+ * 2. Unchecked exceptions (RuntimeException) don't require explicit handling
+ * 3. finally block always executes, regardless of whether exception occurs
+ * 4. try-with-resources automatically closes resources implementing AutoCloseable
+ * 5. Multiple catch blocks are evaluated in order - specific exceptions first
+ * 6. throw keyword is used to explicitly throw an exception
+ * 7. throws keyword declares that a method may throw certain exceptions
+ * 8. Custom exceptions should extend Exception (checked) or RuntimeException (unchecked)
+ * 9. Exception chaining preserves original exception information
+ * 10. Never catch Exception or Throwable unless you have a specific reason
+ *
+ * Exception Types:
+ * - Checked: IOException, SQLException, ClassNotFoundException
+ * - Unchecked: NullPointerException, ArrayIndexOutOfBoundsException, IllegalArgumentException
+ *
+ * Best Practices:
+ * - Handle exceptions at appropriate level
+ * - Don't suppress exceptions without good reason
+ * - Use specific exception types rather than generic Exception
+ * - Clean up resources properly (use try-with-resources when possible)
+ * - Log exceptions for debugging
+ * - Don't use exceptions for control flow
+ * - Provide meaningful error messages
+ * - Consider exception chaining when rethrowing
+ */
