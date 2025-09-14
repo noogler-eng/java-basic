@@ -1,8 +1,5 @@
 package ExceptionsPackage;
 
-import java.util.*;
-import java.io.*;
-
 public class BankAccount {
     float balance;
 
