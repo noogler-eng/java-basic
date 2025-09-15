@@ -380,6 +380,49 @@ public class ArraysClass {
         }
         return num;
     }
+
+    /*
+        Key Features of Java Arrays:
+        1. Fixed Size: Cannot be resized after creation
+        2. Homogeneous: All elements must be of same type
+        3. Zero-indexed: First element at index 0
+        4. Reference Type: Arrays are objects
+        5. Default Values: Elements get default values when created
+        6. Length Property: .length gives array size
+        7. Memory Efficient: Elements stored in contiguous memory
+        8. Random Access: O(1) time to access any element
+
+        Important java.util.Arrays Methods:
+        1. toString(array): String representation
+        2. deepToString(array): For multi-dimensional arrays
+        3. sort(array): Sort in ascending order
+        4. binarySearch(array, key): Search in sorted array
+        5. equals(array1, array2): Compare arrays
+        6. fill(array, value): Fill with value
+        7. copyOf(array, length): Create copy
+        8. copyOfRange(array, from, to): Copy range
+
+        Performance Characteristics:
+        1. Access: O(1)
+        2. Search: O(n) linear, O(log n) if sorted
+        3. Insertion/Deletion: O(n) (requires shifting)
+        4. Sorting: O(n log n)
+
+        Best Practices:
+        1. Use enhanced for loop when index is not needed
+        2. Always check array bounds to avoid exceptions
+        3. Initialize arrays with meaningful default values
+        4. Use Arrays utility methods instead of writing custom code
+        5. Consider using ArrayList for dynamic sizing needs
+        6. Cache array length in loops for better performance
+
+        Common Pitfalls:
+        1. ArrayIndexOutOfBoundsException
+        2. Forgetting arrays are reference types (shallow copying)
+        3. Comparing arrays with == instead of Arrays.equals()
+        4. Not handling null arrays in utility methods
+        5. Modifying array during iteration
+    */
 }
 
 
