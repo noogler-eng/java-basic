@@ -95,7 +95,6 @@ public class ArraysClass {
         System.out.println("Using Arrays.toString(): " + Arrays.toString(originalArray));
 
         // sort() - Sort array in ascending order
-        // Create copy to preserve original
         int[] sortedArray = originalArray.clone();
         Arrays.sort(sortedArray);
         System.out.println("After Arrays.sort(): " + Arrays.toString(sortedArray));
@@ -154,7 +153,6 @@ public class ArraysClass {
         // 7. Multi-dimensional Arrays
         System.out.println("\n7. Multi-dimensional Arrays:");
 
-
         // 2D Array declaration and initialization
         int[][] matrix = {
                 {1, 2, 3},
@@ -172,7 +170,6 @@ public class ArraysClass {
 
         // Using Arrays.deepToString() for multi-dimensional arrays
         System.out.println("Using Arrays.deepToString(): " + Arrays.deepToString(matrix));
-
 
         // 3D Array example
         int[][][] cube = new int[2][2][2];
