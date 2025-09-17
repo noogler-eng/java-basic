@@ -1,0 +1,216 @@
+package MediumPackage;
+
+/*
+    ENCAPSULATION
+    ==============
+    Encapsulation is one of the four fundamental principles of Object-Oriented Programming (OOP).
+    It refers to bundling data (variables) and methods that operate on that data into a single unit (class),
+    and restricting direct access to some of the object's components.
+
+    Key Concepts:
+    - Data Hiding: Making instance variables private
+    - Access Control: Using access modifiers (private, protected, public)
+    - Getter and Setter Methods: Controlled access to private variables
+    - Validation: Adding checks in setter methods
+
+    Benefits:
+    - Data Security: Prevents unauthorized access and modification
+    - Code Maintainability: Changes to internal implementation don't affect external code
+    - Flexibility: Can add validation, logging, or other logic in getter/setter methods
+    - Control: Can make properties read-only, write-only, or read-write
+*/
+
+import java.util.Arrays;
+
+class BankAccount {
+    public final String acc_no;
+    public String name;
+    private double balance;
+    public String type;
+
+    public BankAccount(String acc_no, String name, double amount, String type){
+        this.acc_no = acc_no;
+        this.name = name;
+        this.type = type;
+
+        // amount validation
+        if(amount >= 0){
+            this.balance = amount;
+        }else{
+            this.balance = 0;
+            System.out.println("negative balance is not allowed so set up to zero");
+        }
+    }
+
+    public void displayInfo(){
+        System.out.printf("------- %s------%n", acc_no);
+        System.out.println("name: " + name);
+        System.out.println("balance: " + balance);
+        System.out.println("account_type: " + type);
+    }
+    public void showBalance(){
+        System.out.println("current balance in account: " + balance);
+    }
+    public void deposit(double amount){
+        if(amount <= 0){
+            System.out.println("please enter valid amount");
+            return;
+        }
+
+        balance+=amount;
+        System.out.println("amount added to your account successfully!");
+    }
+    public void withdraw(double amount){
+        if(amount <= 0){
+            System.out.println("please enter valid amount");
+            return;
+        }
+
+        if(balance >= amount){
+            balance-=amount;
+            System.out.println("amount deducted to your account successfully!");
+        }else{
+            System.out.println("insufficient funds!");
+        }
+    }
+
+    // setter functions
+    public void setName(String name){
+        if(name == null || name.isBlank() || name.length() < 6) {
+            System.out.println("please enter the valid name, length should be greater then or equals 6");
+            return;
+        }
+        this.name = name;
+        System.out.println("Account name has been changed....");
+    }
+    public void setAccountType(String accountType){
+        if(accountType != null
+                || accountType.equals("saving")
+                || accountType.equals("fixed")
+                || accountType.equals("current")){
+            this.type = accountType;
+        }else{
+            System.out.println("Error: Invalid account type. Allowed: Savings, Current, Fixed");
+        }
+    }
+}
+
+class Student {
+    public int rollNo;
+    public String firstName;
+    public String lastName;
+    int age;
+    String email;
+
+    float[] grades;
+    private int index = 0;
+
+    public Student(int rollNo, String firstName, String lastName, int age, String email){
+        if(!email.contains("@gmail.com")){
+            System.out.println("please enter the valid email");
+            return;
+        }
+
+        if(age < 18){
+            System.out.println("age must be greater or equal then 18");
+            return;
+        }
+
+        if(firstName == null || lastName == null || firstName.isBlank() || lastName.isBlank()){
+            System.out.println("there must be a proper firstname and lastname");
+            return;
+        }
+
+        this.rollNo = rollNo;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.grades = new float[7];
+    }
+
+    public void infoDisplay(){
+        System.out.printf("------ %s ------%n", rollNo);
+        System.out.println("firstName: " + firstName);
+        System.out.println("lastName: " + lastName);
+        System.out.println("age: " + age);
+        System.out.println("email: " + email);
+        System.out.println("grades: " + Arrays.toString(grades));
+    }
+
+    public void addGrade(float grade){
+        if(index >= 7){
+            System.out.println("already filled grades");
+            return;
+        }
+
+        if(grade < 0 || grade > 100){
+            System.out.println("grade must be non-negative or not must be greater then 100");
+            return;
+        }
+
+        grades[index] = grade;
+        index++;
+        System.out.println("grade has been added in student database");
+    }
+
+    public float getAverage(){
+        float grades_avg = 0;
+        for(float i: grades){
+            grades_avg += i;
+        }
+
+        return grades_avg / index + 1;
+    }
+}
+
+public class Encapsulation {
+    public static void main(String[] args){
+        System.out.println("=== Encapsulation Examples in Java ===\n");
+
+        // 1. Bank Account Example
+        System.out.println("1. Bank Account Encapsulation:");
+        BankAccount account = new BankAccount("ACC001", "sharad", 1000.0d, "saving");
+        account.displayInfo();
+
+        System.out.println("\n--- Account Operations ---");
+        account.deposit(500.0);
+        account.withdraw(200.0);
+        account.withdraw(2000.0); // Should fail
+        account.deposit(-100.0);
+        account.showBalance();
+
+        System.out.println("\n--- Attempting to modify account details ---");
+        account.setName("sharad-poddar");
+        account.displayInfo();
+
+        account.setAccountType("current");
+        account.displayInfo();
+
+        System.out.println("\n" + "=".repeat(70) + "\n");
+
+        // 2. Student Example
+        System.out.println("2. Student Encapsulation:");
+        Student stud = new Student(12345, "sharad", "poddar", 20, "sharad@gmail.com");
+        stud.infoDisplay();
+
+        stud.addGrade(85.5f);
+        stud.addGrade(92.0f);
+        stud.addGrade(78.5f);
+        stud.addGrade(88.0f);
+        stud.addGrade(95.5f);
+        stud.addGrade(105.0f); // Should fail
+        stud.addGrade(-10.0f); // Should fail
+
+        float avg = stud.getAverage();
+        System.out.println("avg: " + avg);
+    }
+}
+
+
+
+
+
+
+
+
