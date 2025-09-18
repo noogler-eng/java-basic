@@ -231,9 +231,13 @@ class Employee {
     }
 }
 
+
 public class Encapsulation {
     public static void main(String[] args){
         System.out.println("=== Encapsulation Examples in Java ===\n");
+
+
+
 
         // 1. Bank Account Example
         System.out.println("1. Bank Account Encapsulation:");
@@ -255,6 +259,9 @@ public class Encapsulation {
         account.displayInfo();
 
         System.out.println("\n" + "=".repeat(70) + "\n");
+
+
+
 
         // 2. Student Example
         System.out.println("2. Student Encapsulation:");
@@ -282,13 +289,107 @@ public class Encapsulation {
         System.out.println("\n--- Attempting to modify student details ---");
         System.out.println("\n" + "=".repeat(70) + "\n");
 
+
+
+
         // 3. Employee Example - Access Modifiers
         System.out.println("3. Employee Encapsulation - Access Modifiers:");
-        Employee emp1 = new Employee();
-        Employee emp2 = new Employee();
+        Employee emp1 = new Employee(1001, "Engineering", "software developer", "projectX", 75000);
+        Employee emp2 = new Employee(1002, "Marketing", "Marketing Manager", "projectY", 65000);
 
+        // this is static variable we are calling it with the class...
+        System.out.println("Total employees: " + Employee.getTotalEmployees());
+
+        // Accessing public field directly
+        System.out.println("Employee 1 department (public): " + emp1.department);
+        // modify the public field
+        emp1.department = "Research & Development";
+        System.out.println("Modified department: " + emp1.department);
+
+        // Accessing protected field (within same package)
+        System.out.println("Employee 1 position (protected): " + emp1.position);
+
+        // Accessing package-private field
+        System.out.println("Employee 1 project (package-private): " + emp1.projectName);
+
+        // Cannot access private field directly
+        // System.out.println(emp1.salary); // This would cause compilation error
+
+        // Must-use getter for private field
+        System.out.println("Employee 1 salary (via getter): $" + emp1.getSalary());
+        System.out.println("\n--- Employee operations ---");
+        emp1.setSalary(80000);
+        emp1.giveRaise(10);
+        emp1.setSalary(250000); // Should fail
+        emp1.giveRaise(60); // Should fail
+
+        System.out.println("\n" + "=".repeat(70) + "\n");
     }
 }
+
+
+
+
+/*
+    Key Points about Encapsulation:
+
+    1. Data Hiding:
+        - Make instance variables private
+        - Prevents direct access from outside the class
+        - Protects data integrity and maintains object state
+
+    2. Access Modifiers:
+        - private: Accessible only within the same class
+        - protected: Accessible within same package and subclasses
+        - package-private (default): Accessible within same package
+        - public: Accessible from anywhere
+
+     3. Getter and Setter Methods:
+        - Getters (accessors): Provide read access to private fields
+        - Setters (mutators): Provide controlled write access with validation
+        - Can implement business logic, validation, and logging
+
+     4. Benefits:
+        - Security: Prevents unauthorized access and modification
+        - Maintainability: Internal changes don't affect external code
+        - Flexibility: Can add validation, logging, computation
+        - Control: Can make fields read-only, write-only, or computed
+        - Debugging: Easier to track data modifications
+
+     5. Best Practices:
+        - Keep fields private unless there's a specific reason not to
+        - Provide public getter/setter methods for controlled access
+        - Add validation in setter methods
+        - Use meaningful names for getter/setter methods
+        - Don't provide setters for fields that shouldn't change
+        - Return copies of mutable objects to prevent external modification
+
+     6. Common Patterns:
+        - Read-only properties: Getter only, no setter
+        - Write-only properties: Setter only, no getter (rare)
+        - Computed properties: Getter calculates value from other fields
+        - Validated properties: Setter includes business rule validation
+        - Immutable objects: No setters, all fields final
+
+     7. Real-world Applications:
+        - Banking systems: Account balance protection
+        - User management: Password and email validation
+        - Configuration objects: Preventing invalid settings
+        - Data models: Maintaining referential integrity
+        - APIs: Controlling how data is accessed and modified
+ */
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
