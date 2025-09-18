@@ -162,6 +162,73 @@ class Student {
 
         return grades_avg / index + 1;
     }
+
+    // getter function
+    public float[] getGrades(){
+        return grades;
+    }
+}
+
+class Employee {
+    // different access modifier demonstration
+    public String department;          // Public - accessible everywhere
+    protected String position;         // Protected - accessible in same package and subclasses
+    String projectName;                // Package-private - accessible in same package
+    private double salary;             // Private - accessible only within this class
+    private final int employeeId;      // Final field - cannot be changed after initialization
+
+    // static class variable
+    private static int total_emp = 0;
+
+    public Employee(int emp_id, String department, String position, String projectName, double salary){
+        this.employeeId = emp_id;
+        this.department = department;
+        this.position = position;
+        this.projectName = projectName;
+        setSalary(salary);
+        total_emp++;
+    }
+
+    // Getter for private final field (read-only)
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    // Getter and setter for salary with business logic
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary){
+        if(salary >= 30000 && salary <= 200000){
+            this.salary = salary;
+            System.out.println("salary update to :$" + salary);
+        }else{
+            System.out.println("Error: Salary must be between $30,000 and $200,000");
+        }
+    }
+
+    // Static method to access private static variable
+    public static int getTotalEmployees() {
+        return total_emp;
+    }
+
+    public void giveRaise(double percentage){
+        if(percentage > 0 && percentage <= 50){
+            double salary = this.salary + 0.50 * (this.salary);
+            this.salary = salary;
+            System.out.println("Raise of " + percentage + "% granted. New salary: $" + salary);
+        } else {
+            System.out.println("Error: Raise percentage must be between 0% and 50%");
+        }
+    }
+
+    // Method with different access levels for internal operations
+    private void calculateTax(){
+        // Private method - internal business logic
+        double tax = salary * 0.25;
+        System.out.println("Calculated tax: $" + tax);
+    }
 }
 
 public class Encapsulation {
@@ -204,6 +271,22 @@ public class Encapsulation {
 
         float avg = stud.getAverage();
         System.out.println("avg: " + avg);
+
+        // Accessing grades safely (getting a copy)
+        float[] grades_copy = stud.getGrades();
+        System.out.print("Individual grades: ");
+        for(float i: grades_copy){
+            System.out.println("grade -> " + i);
+        }
+
+        System.out.println("\n--- Attempting to modify student details ---");
+        System.out.println("\n" + "=".repeat(70) + "\n");
+
+        // 3. Employee Example - Access Modifiers
+        System.out.println("3. Employee Encapsulation - Access Modifiers:");
+        Employee emp1 = new Employee();
+        Employee emp2 = new Employee();
+
     }
 }
 
